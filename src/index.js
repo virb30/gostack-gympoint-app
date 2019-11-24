@@ -1,8 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import { Provider } from 'react-redux';
+import { StatusBar } from 'react-native';
 
-// import { Container } from './styles';
+import './config/ReactotronConfig';
+
+import { store } from './store';
+
+import App from './App';
 
 export default function src() {
-  return <View />;
+  return (
+    <Provider store={store}>
+      <StatusBar backgroundColor="#FFF" barStyle="dark-content" />
+      <App />
+    </Provider>
+  );
 }
