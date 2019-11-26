@@ -3,10 +3,17 @@ import { useSelector } from 'react-redux';
 
 import createRouter from './routes';
 
+import Header from '~/components/Header';
+
 export default function App() {
   const studentId = useSelector(state => state.student.id);
 
   const Routes = createRouter(studentId);
 
-  return <Routes />;
+  return (
+    <>
+      {studentId && <Header />}
+      <Routes />
+    </>
+  );
 }

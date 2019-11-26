@@ -8,6 +8,7 @@ export const Container = styled.View`
   justify-content: center;
 
   padding: 10px;
+  background: #fff;
 `;
 
 export const LogoText = styled.Text`

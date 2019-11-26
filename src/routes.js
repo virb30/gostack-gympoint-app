@@ -5,8 +5,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import colors from '~/styles/colors';
 
-import Header from '~/components/Header';
-
 import SignIn from './pages/SignIn';
 
 import CheckIn from './pages/CheckIn';
@@ -23,9 +21,6 @@ export default (studentId = null) =>
             HelpOrder,
           },
           {
-            defaultNavigationOptions: {
-              header: <Header />,
-            },
             resetOnBlur: true,
             tabBarOptions: {
               keyboardHidesTabBar: true,
