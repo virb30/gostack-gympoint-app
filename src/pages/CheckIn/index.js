@@ -44,17 +44,8 @@ export default function CheckIn() {
           data={checkins}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => <CheckinItem data={item} />}
-          onEndReachedThreshold={0.1}
-          onEndReached={() => {}}
         />
       </Container>
     </Background>
   );
 }
-
-CheckIn.navigationOptions = {
-  tabBarLabel: 'Check-ins',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="edit-location" size={20} color={tintColor} />
-  ),
-};
