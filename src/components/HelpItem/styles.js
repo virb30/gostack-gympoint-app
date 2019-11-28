@@ -1,15 +1,18 @@
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled(RectButton).attrs(props => ({
+  ...props,
+}))`
   background: #fff;
   border-radius: 4px;
   align-items: center;
   justify-content: space-around;
   margin: 10px 0;
   padding: 15px;
-  flex: 1;
 
   border: 1px solid #ddd;
+  height: 150px;
 `;
 
 export const Title = styled.Text`
@@ -23,7 +26,6 @@ export const Time = styled.Text`
   color: #666;
   font-size: 14px;
   font-weight: normal;
-  flex: 1;
   text-align: right;
   margin-right: 10px;
 `;
@@ -31,17 +33,18 @@ export const Time = styled.Text`
 export const Status = styled.View`
   flex-direction: row;
   align-items: center;
-  flex: 1;
   margin-left: 10px;
 `;
 
 export const Info = styled.View`
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const Question = styled.Text.attrs({
   numberOfLines: 3,
 })`
-  margin-top: 20px;
+  color: #666;
 `;

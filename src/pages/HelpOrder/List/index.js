@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { withNavigationFocus } from 'react-navigation';
 
 import api from '~/services/api';
 
@@ -8,20 +9,22 @@ import Background from '~/components/Background';
 
 import { Container, SubmitButton, List } from './styles';
 
-export default function HelpList({ navigation }) {
+function HelpList({ navigation, isFocused }) {
   const [helpOrders, setHelpOrders] = useState([]);
 
   const student = useSelector(state => state.student);
 
-  useEffect(() => {
-    async function loadHelp() {
-      const response = await api.get(`students/${student.id}/help-orders`);
+  const loadHelp = useCallback(async () => {
+    const response = await api.get(`students/${student.id}/help-orders`);
 
-      setHelpOrders(response.data);
-    }
-
-    loadHelp();
+    setHelpOrders(response.data);
   }, [student.id]);
+
+  useEffect(() => {
+    if (isFocused) {
+      loadHelp();
+    }
+  }, [isFocused, loadHelp]);
 
   return (
     <Background>
@@ -44,3 +47,5 @@ export default function HelpList({ navigation }) {
     </Background>
   );
 }
+
+export default withNavigationFocus(HelpList);

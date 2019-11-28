@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Alert } from 'react-native';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
 import api from '~/services/api';
 
 import CheckinItem from '~/components/CheckinItem';
@@ -13,7 +11,6 @@ import { Container, SubmitButton, CheckinList } from './styles';
 
 export default function CheckIn() {
   const [checkins, setCheckins] = useState([]);
-
   const student = useSelector(state => state.student);
 
   const loadCheckins = useCallback(async () => {

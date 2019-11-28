@@ -10,7 +10,7 @@ export const Card = styled.View`
   background: #fff;
   border: 1px solid #ddd;
 
-  padding: 15px;
+  padding: 20px;
 `;
 
 export const Title = styled.Text`
@@ -23,4 +23,20 @@ export const Content = styled.Text`
   font-size: 14px;
   line-height: 26px;
   color: #666;
+  margin: 16px 0;
+`;
+
+export const Status = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Time = styled.Text`
+  color: #666;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: right;
+  margin-right: 10px;
 `;

@@ -5,11 +5,12 @@ export const Container = styled.View`
   border-radius: 4px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 10px 0;
   height: 46px;
 
   border: 1px solid #ddd;
+  padding: 15px;
 `;
 
 export const Title = styled.Text`

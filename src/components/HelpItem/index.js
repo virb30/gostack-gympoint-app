@@ -15,17 +15,21 @@ export default function HelpItem({ data, onPress }) {
     });
   }, [data.answer_at]);
 
+  const answered = useMemo(() => {
+    return !!data.answer_at;
+  }, [data.answer_at]);
+
   return (
-    <Container onPress={onPress}>
+    <Container onPress={onPress} enabled={answered}>
       <Info>
         <Status>
           <Icon
             name="check-circle"
-            color={data.answer_at ? '#42cb59' : '#999'}
+            color={answered ? '#42cb59' : '#999'}
             size={20}
           />
-          <Title answered={data.answer_at !== null}>
-            {data.answer_at ? 'Respondido' : 'Sem resposta'}
+          <Title answered={answered}>
+            {answered ? 'Respondido' : 'Sem resposta'}
           </Title>
         </Status>
 
