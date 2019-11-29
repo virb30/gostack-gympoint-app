@@ -11,13 +11,20 @@ import { Container, SubmitButton, CheckinList } from './styles';
 
 export default function CheckIn() {
   const [checkins, setCheckins] = useState([]);
+  const [page, setPage] = useState(1);
   const student = useSelector(state => state.student);
 
-  const loadCheckins = useCallback(async () => {
-    const response = await api.get(`students/${student.id}/checkins`);
-
-    setCheckins(response.data);
-  }, [student.id]);
+  const loadCheckins = useCallback(
+    async (p = 1) => {
+      const response = await api.get(`students/${student.id}/checkins`, {
+        params: {
+          page: p,
+        },
+      });
+      setCheckins(response.data);
+    },
+    [student.id]
+  );
 
   useEffect(() => {
     loadCheckins();
@@ -25,10 +32,23 @@ export default function CheckIn() {
 
   async function handleSubmit() {
     try {
-      await api.post(`students/${student.id}/checkins`);
-      loadCheckins();
+      const { data } = await api.post(`students/${student.id}/checkins`);
+      setCheckins([data, ...checkins]);
     } catch (err) {
       Alert.alert('Erro ao realizar Checkin', err.response.data.error);
+    }
+  }
+
+  async function loadMore() {
+    const response = await api.get(`students/${student.id}/checkins`, {
+      params: {
+        page: page + 1,
+      },
+    });
+
+    if (response.data.length > 0) {
+      setPage(page + 1);
+      setCheckins([...checkins, ...response.data]);
     }
   }
 
@@ -41,6 +61,8 @@ export default function CheckIn() {
           data={checkins}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => <CheckinItem data={item} />}
+          onEndReachedThreshold={0.1}
+          onEndReached={loadMore}
         />
       </Container>
     </Background>
